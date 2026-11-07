@@ -73,7 +73,7 @@ export function Toggle({
       <span className={compact ? "hidden md:inline" : ""}>
         {label}: {on ? "On" : "Off"}
       </span>
-      <span className={cn("h-3 w-3 rounded-full", on ? "bg-gf-green" : "bg-white/40")} aria-hidden="true" />
+      <span className={cn("h-3 w-3 rounded-full", compact && "hidden sm:block", on ? "bg-gf-green" : "bg-white/40")} aria-hidden="true" />
     </button>
   );
 }

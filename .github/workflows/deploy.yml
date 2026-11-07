@@ -33,7 +33,7 @@ jobs:
         run: npm install
 
       - name: Build single-file presentation
-        run: npm run build
+        run: node scripts/build-pages.mjs
 
       - name: Setup Pages
         uses: actions/configure-pages@v5

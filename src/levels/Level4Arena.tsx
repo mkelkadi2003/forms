@@ -3,6 +3,7 @@ import { ARENA, FORM_TOOLBAR, type ArenaQuestion } from "../data/content";
 import { useGame, type Screen } from "../state/GameContext";
 import { sound } from "../lib/audio";
 import { Bubble, Btn, Confetti, Decor, Feedback, LevelFrame, LevelHeader, ProgressBar, Robot, StarBurst } from "../components/ui";
+import { SchoolLogo } from "../components/SchoolLogo";
 import { cn } from "../utils/cn";
 
 type Phase = "intro" | "countdown" | "play" | "results";
@@ -445,6 +446,8 @@ export default function Level4Arena({ nav }: { nav: (s: Screen) => void }) {
             {pass && (
               <div className="space-y-4">
                 <div className="cert print-area mx-auto max-w-3xl rounded-[1.75rem] p-6 text-center text-ink shadow-2xl sm:p-10">
+                  <SchoolLogo className="mx-auto mb-4 w-72" />
+                  <p className="mb-2 text-sm font-bold text-ink/70">Al-Bassam Schools | Grade 6 ICT</p>
                   <p className="font-display text-sm uppercase tracking-[0.3em] text-gf-purple">Certificate of Achievement</p>
                   <h3 className="mt-2 font-display text-4xl sm:text-5xl">Form Master Certificate</h3>
                   <p className="mt-5 text-lg">This certifies that</p>

@@ -4,46 +4,50 @@ import { sound } from "../lib/audio";
 import { useGame, type LevelId, type Screen } from "../state/GameContext";
 import { cn } from "../utils/cn";
 import { Btn, Modal, Toggle } from "./ui";
+import { SchoolLogo } from "./SchoolLogo";
 
 /* ---------- Top bar (Home, sound toggles, progress, teacher) ---------- */
 export function TopBar({ onHome, onTeacher }: { onHome: () => void; onTeacher: () => void }) {
   const { settings, setMusic, setSfx, completedCount } = useGame();
   return (
     <header className="sticky top-0 z-40 border-b border-white/10 bg-ink/90 text-white shadow-lg backdrop-blur-md">
-      <div className="mx-auto flex max-w-6xl items-center gap-2 px-3 py-2 sm:gap-3 sm:px-5">
-        <Btn tone="yellow" size="sm" onClick={onHome} aria-label="Home: back to the city">
-          🏠 <span className="hidden sm:inline">Home</span>
-        </Btn>
-        <div className="flex min-w-0 flex-1 items-center gap-2 font-display text-base sm:text-xl">
-          <span className="text-2xl" aria-hidden="true">
-            🤖
-          </span>
-          <span className="hidden truncate sm:inline">Form Adventure City</span>
+      <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-2 px-3 py-2 sm:gap-3 sm:px-5">
+        <div className="flex w-full items-center justify-between gap-3 sm:w-auto sm:min-w-0 sm:flex-1 sm:justify-start">
+          <SchoolLogo className="w-40 shrink-0 sm:w-36 lg:w-44" />
+          <div className="font-display text-right sm:hidden xl:block xl:text-left">
+            <p className="text-sm font-semibold xl:text-base">Form Adventure City</p>
+            <p className="text-xs text-white/75">Grade 6 ICT</p>
+          </div>
         </div>
-        <button
-          type="button"
-          onClick={() => sound.play("alert")}
-          aria-label="Play attention alert sound"
-          title="Play attention alert sound"
-          className="inline-flex items-center gap-1.5 rounded-full border-2 border-gf-red bg-gf-red px-2.5 py-1.5 font-display text-sm font-semibold text-white shadow transition hover:brightness-110"
-        >
-          <span aria-hidden="true">🚨</span>
-          <span className="hidden md:inline">Alert</span>
-        </button>
-        <Toggle compact icon="🎵" label="Music" on={settings.music} onToggle={() => setMusic(!settings.music)} />
-        <Toggle compact icon="🔊" label="Sound" on={settings.sfx} onToggle={() => setSfx(!settings.sfx)} />
-        <span className="whitespace-nowrap rounded-full bg-gf-yellow px-3 py-1.5 font-display text-sm font-semibold text-ink" aria-label={`${completedCount} of 6 levels complete`}>
-          ⭐ {completedCount}/6
-        </span>
-        <button
-          type="button"
-          onClick={onTeacher}
-          aria-label="Teacher controls"
-          title="Teacher controls"
-          className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-white/15 text-xl transition hover:bg-white/25"
-        >
-          🧑‍🏫
-        </button>
+        <div className="flex w-full items-center justify-between gap-1 sm:w-auto sm:justify-end sm:gap-3">
+          <Btn tone="yellow" size="sm" onClick={onHome} aria-label="Home: back to the city">
+            🏠 <span className="hidden sm:inline">Home</span>
+          </Btn>
+          <button
+            type="button"
+            onClick={() => sound.play("alert")}
+            aria-label="Play attention alert sound"
+            title="Play attention alert sound"
+            className="inline-flex items-center gap-1.5 rounded-full border-2 border-gf-red bg-gf-red px-2.5 py-1.5 font-display text-sm font-semibold text-white shadow transition hover:brightness-110"
+          >
+            <span aria-hidden="true">🚨</span>
+            <span className="hidden md:inline">Alert</span>
+          </button>
+          <Toggle compact icon="🎵" label="Music" on={settings.music} onToggle={() => setMusic(!settings.music)} />
+          <Toggle compact icon="🔊" label="Sound" on={settings.sfx} onToggle={() => setSfx(!settings.sfx)} />
+          <span className="whitespace-nowrap rounded-full bg-gf-yellow px-3 py-1.5 font-display text-sm font-semibold text-ink" aria-label={`${completedCount} of 6 levels complete`}>
+            ⭐ {completedCount}/6
+          </span>
+          <button
+            type="button"
+            onClick={onTeacher}
+            aria-label="Teacher controls"
+            title="Teacher controls"
+            className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-white/15 text-xl transition hover:bg-white/25"
+          >
+            🧑‍🏫
+          </button>
+        </div>
       </div>
     </header>
   );
