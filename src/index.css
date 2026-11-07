@@ -1,0 +1,922 @@
+@import "tailwindcss";
+
+/* ============================================================
+   Form Adventure City – theme tokens (Google Forms inspired)
+   ============================================================ */
+@theme {
+  --font-display: "Fredoka", "Trebuchet MS", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Nunito", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --color-gf-purple: #673ab7;
+  --color-gf-blue: #4285f4;
+  --color-gf-green: #34a853;
+  --color-gf-yellow: #fbbc04;
+  --color-gf-red: #ea4335;
+  --color-ink: #24163f;
+}
+
+/* ============================================================
+   Base element defaults
+   ============================================================ */
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  font-family: var(--font-body);
+  color: var(--color-ink);
+  background: #5b2fc9;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  min-height: 100dvh;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+input,
+textarea {
+  font: inherit;
+}
+
+:focus-visible {
+  outline: 4px solid #4285f4;
+  outline-offset: 3px;
+}
+
+/* ============================================================
+   Keyframes
+   ============================================================ */
+@keyframes float-y {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+
+@keyframes bob {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-2deg);
+  }
+  50% {
+    transform: translateY(-9px) rotate(2deg);
+  }
+}
+
+@keyframes pop-in {
+  0% {
+    transform: scale(0.4);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.06);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  15% {
+    transform: translateX(-10px) rotate(-1deg);
+  }
+  30% {
+    transform: translateX(9px) rotate(1deg);
+  }
+  45% {
+    transform: translateX(-7px);
+  }
+  60% {
+    transform: translateX(6px);
+  }
+  75% {
+    transform: translateX(-3px);
+  }
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: scale(0.7);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
+@keyframes drift {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 600px 300px;
+  }
+}
+
+@keyframes title-wave {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes shine {
+  from {
+    background-position: -200% 0;
+  }
+  to {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes window-flicker {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  45% {
+    opacity: 0.4;
+  }
+  60% {
+    opacity: 1;
+  }
+}
+
+@keyframes alert-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(234, 67, 53, 0.75);
+  }
+  50% {
+    box-shadow: 0 0 0 14px rgba(234, 67, 53, 0);
+  }
+}
+
+@keyframes glow-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(52, 168, 83, 0.6);
+  }
+  50% {
+    box-shadow: 0 0 0 16px rgba(52, 168, 83, 0);
+  }
+}
+
+@keyframes confetti-fall {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(var(--dx), 115vh, 0) rotate(820deg);
+    opacity: 0.9;
+  }
+}
+
+@keyframes burst {
+  0% {
+    transform: translate(-50%, -50%) scale(0.2);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty))) scale(1.1) rotate(160deg);
+    opacity: 0;
+  }
+}
+
+@keyframes float-up {
+  0% {
+    transform: translate(-50%, 10px) scale(0.6);
+    opacity: 0;
+  }
+  15% {
+    transform: translate(-50%, 0) scale(1.15);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -80px) scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes wipe {
+  0% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes blink {
+  0%,
+  46%,
+  52%,
+  100% {
+    transform: scaleY(1);
+  }
+  49% {
+    transform: scaleY(0.1);
+  }
+}
+
+@keyframes talk {
+  from {
+    transform: scaleY(0.35);
+  }
+  to {
+    transform: scaleY(1.25);
+  }
+}
+
+@keyframes wave {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-70deg);
+  }
+}
+
+@keyframes pie-in {
+  from {
+    transform: rotate(-150deg) scale(0.2);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+@keyframes sweep {
+  0%,
+  100% {
+    transform: rotate(-18deg);
+  }
+  50% {
+    transform: rotate(18deg);
+  }
+}
+
+@keyframes cloud-drift {
+  from {
+    transform: translateX(-220px);
+  }
+  to {
+    transform: translateX(calc(100vw + 220px));
+  }
+}
+
+/* ============================================================
+   Component classes.
+   These live in the "components" layer so Tailwind utility classes
+   (for example bg-gf-yellow or text-white on a .chip) can override them.
+   ============================================================ */
+@layer components {
+  /* ---------- Chunky 3D buttons ---------- */
+  .btn3d {
+    --c: #673ab7;
+    --shadow: #4a2690;
+    --t: #ffffff;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border: 0;
+    border-radius: 1.25rem;
+    padding: 0.7rem 1.2rem;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.05rem;
+    line-height: 1.15;
+    text-align: center;
+    color: var(--t);
+    background: var(--c);
+    box-shadow: 0 6px 0 var(--shadow), 0 14px 24px -12px rgba(20, 10, 40, 0.6);
+    transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.2s ease;
+    user-select: none;
+  }
+
+  .btn3d:hover:not(:disabled) {
+    transform: translateY(-2px);
+    filter: brightness(1.06);
+    box-shadow: 0 8px 0 var(--shadow), 0 18px 28px -12px rgba(20, 10, 40, 0.65);
+  }
+
+  .btn3d:active:not(:disabled) {
+    transform: translateY(4px);
+    box-shadow: 0 2px 0 var(--shadow), 0 6px 10px -6px rgba(20, 10, 40, 0.6);
+  }
+
+  .btn3d:disabled {
+    opacity: 0.5;
+    filter: grayscale(0.35);
+  }
+
+  .btn3d-sm {
+    padding: 0.5rem 0.9rem;
+    font-size: 0.92rem;
+    border-radius: 1rem;
+  }
+
+  .btn3d-lg {
+    padding: 0.95rem 1.7rem;
+    font-size: 1.25rem;
+    border-radius: 1.4rem;
+  }
+
+  .btn3d-xl {
+    padding: 1.15rem 2.3rem;
+    font-size: 1.6rem;
+    border-radius: 1.6rem;
+    box-shadow: 0 9px 0 var(--shadow), 0 18px 30px -12px rgba(20, 10, 40, 0.7);
+  }
+
+  .btn3d-xl:active:not(:disabled) {
+    box-shadow: 0 2px 0 var(--shadow);
+  }
+
+  /* ---------- Cards, chips, speech bubbles ---------- */
+  .card-kid {
+    background: #ffffff;
+    color: var(--color-ink);
+    border-radius: 1.75rem;
+    box-shadow: 0 8px 0 rgba(36, 22, 63, 0.1), 0 22px 40px -18px rgba(36, 22, 63, 0.5);
+  }
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    border-radius: 999px;
+    padding: 0.25rem 0.8rem;
+    font-weight: 800;
+    font-size: 0.85rem;
+    background: rgba(103, 58, 183, 0.12);
+    color: #4a2690;
+  }
+
+  .chip-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    border-radius: 999px;
+    padding: 0.45rem 0.9rem;
+    background: #ffffff;
+    border: 2px dashed #4285f4;
+    color: #1d4fb5;
+    font-weight: 800;
+    font-size: 0.95rem;
+    transition: transform 0.15s ease, background 0.2s ease;
+  }
+
+  .chip-btn:hover {
+    transform: translateY(-2px);
+    background: #eaf2ff;
+  }
+
+  .bubble {
+    position: relative;
+    background: #ffffff;
+    color: var(--color-ink);
+    border-radius: 1.6rem;
+    padding: 1.1rem 1.3rem;
+    box-shadow: 0 7px 0 rgba(36, 22, 63, 0.12), 0 18px 30px -16px rgba(0, 0, 0, 0.5);
+  }
+
+  .bubble::before {
+    content: "";
+    position: absolute;
+    left: -15px;
+    top: 30px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 12px 15px 12px 0;
+    border-color: transparent #ffffff transparent transparent;
+  }
+
+  .bubble.bubble-right::before {
+    left: auto;
+    right: -15px;
+    border-width: 12px 0 12px 15px;
+    border-color: transparent transparent transparent #ffffff;
+  }
+
+  .glass {
+    background: rgba(255, 255, 255, 0.14);
+    border: 2px solid rgba(255, 255, 255, 0.28);
+    backdrop-filter: blur(6px);
+    border-radius: 1.5rem;
+  }
+
+  .star-glow {
+    filter: drop-shadow(0 0 8px rgba(251, 188, 4, 0.85));
+  }
+
+  /* ---------- Ambient animations ---------- */
+  .anim-float {
+    animation: float-y 4.5s ease-in-out infinite;
+  }
+
+  .anim-bob {
+    animation: bob 3.4s ease-in-out infinite;
+  }
+
+  .pop-in {
+    animation: pop-in 0.55s cubic-bezier(0.2, 0.9, 0.3, 1.3) both;
+  }
+
+  .screen-enter,
+  .fade-up {
+    animation: fade-up 0.5s ease both;
+  }
+
+  .anim-shake {
+    animation: shake 0.6s ease-in-out;
+  }
+
+  .twinkle {
+    animation: twinkle 2.6s ease-in-out infinite;
+  }
+
+  .stars-bg {
+    background-image:
+      radial-gradient(2px 2px at 20px 30px, #ffffff, transparent),
+      radial-gradient(1.5px 1.5px at 120px 90px, #fff8c4, transparent),
+      radial-gradient(2px 2px at 220px 150px, #ffffff, transparent),
+      radial-gradient(1.5px 1.5px at 60px 170px, #ffffff, transparent),
+      radial-gradient(2.5px 2.5px at 290px 40px, #ffe38a, transparent);
+    background-size: 300px 200px;
+    animation: drift 120s linear infinite;
+  }
+
+  .title-letter {
+    display: inline-block;
+    animation: title-wave 2.4s ease-in-out infinite;
+    text-shadow: 0 6px 0 rgba(36, 22, 63, 0.35), 0 14px 26px rgba(0, 0, 0, 0.25);
+  }
+
+  .shine {
+    background: linear-gradient(100deg, transparent 35%, rgba(255, 255, 255, 0.6) 50%, transparent 65%);
+    background-size: 200% 100%;
+    animation: shine 2.4s linear infinite;
+  }
+
+  .window-lit {
+    animation: window-flicker 3.2s ease-in-out infinite;
+  }
+
+  .alert-light {
+    animation: alert-pulse 1.2s infinite;
+  }
+
+  .glow-good {
+    animation: glow-pulse 1.2s ease-out 2;
+  }
+
+  /* ---------- Confetti, star bursts, floating text, wipe ---------- */
+  .confetti-piece {
+    position: absolute;
+    top: -30px;
+    display: block;
+    animation-name: confetti-fall;
+    animation-timing-function: cubic-bezier(0.25, 0.5, 0.5, 1);
+    animation-fill-mode: forwards;
+  }
+
+  .burst-star {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    font-size: 1.7rem;
+    pointer-events: none;
+    animation: burst 1s ease-out forwards;
+  }
+
+  .float-up-msg {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    white-space: nowrap;
+    pointer-events: none;
+    animation: float-up 1.4s ease-out forwards;
+  }
+
+  .wipe-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 80;
+    pointer-events: none;
+    background: linear-gradient(100deg, #673ab7 0%, #4285f4 55%, #34a853 100%);
+    transform: translateX(-100%);
+    animation: wipe 0.72s cubic-bezier(0.7, 0, 0.3, 1) forwards;
+  }
+
+  /* ---------- Robot guide ---------- */
+  .robot-eye {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: blink 4.6s infinite;
+  }
+
+  .robot-talk {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: talk 0.42s ease-in-out infinite alternate;
+  }
+
+  .robot-antenna {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: float-y 2.4s ease-in-out infinite;
+  }
+
+  .robot-wave {
+    transform-box: view-box;
+    transform-origin: 138px 172px;
+    animation: wave 1.5s ease-in-out infinite;
+  }
+
+  /* ---------- Charts ---------- */
+  .bar-transition {
+    transition: height 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .pie-in {
+    transform-box: view-box;
+    transform-origin: 90px 90px;
+    animation: pie-in 0.9s cubic-bezier(0.2, 0.9, 0.3, 1.15) both;
+  }
+
+  /* ---------- Flip cards (Level 1) ---------- */
+  .flip-wrap {
+    perspective: 1400px;
+  }
+
+  .flip-inner {
+    position: relative;
+    height: 100%;
+    transition: transform 0.75s cubic-bezier(0.2, 0.8, 0.2, 1);
+    transform-style: preserve-3d;
+  }
+
+  .flip-inner.is-flipped {
+    transform: rotateY(180deg);
+  }
+
+  .flip-face {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+
+  .flip-face.flip-back {
+    transform: rotateY(180deg);
+  }
+
+  /* ---------- Game-show answer tiles (Level 4) ---------- */
+  .answer-tile {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    width: 100%;
+    min-height: 4.6rem;
+    padding: 0.85rem 1.1rem;
+    border-radius: 1.4rem;
+    background: #ffffff;
+    color: var(--color-ink);
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-align: left;
+    line-height: 1.15;
+    box-shadow: 0 7px 0 #b9a7de, 0 14px 22px -14px rgba(0, 0, 0, 0.6);
+    transition: transform 0.12s ease, background 0.25s ease, box-shadow 0.25s ease, opacity 0.3s ease;
+  }
+
+  .answer-tile:not(:disabled):hover {
+    transform: translateY(-3px);
+  }
+
+  .answer-tile:not(:disabled):active {
+    transform: translateY(4px);
+    box-shadow: 0 2px 0 #b9a7de;
+  }
+
+  .answer-tile:disabled {
+    cursor: default;
+  }
+
+  .answer-tile .letter {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 2.3rem;
+    height: 2.3rem;
+    border-radius: 999px;
+    background: rgba(36, 22, 63, 0.1);
+    font-weight: 700;
+    font-size: 1.1rem;
+  }
+
+  .answer-tile.is-right,
+  .answer-tile.is-match {
+    background: #34a853;
+    color: #ffffff;
+    box-shadow: 0 7px 0 #1e7d3b, 0 14px 22px -14px rgba(0, 0, 0, 0.6);
+  }
+
+  .answer-tile.is-right .letter {
+    background: rgba(255, 255, 255, 0.25);
+  }
+
+  .answer-tile.is-wrong {
+    background: #ea4335;
+    color: #ffffff;
+    box-shadow: 0 7px 0 #a92b20, 0 14px 22px -14px rgba(0, 0, 0, 0.6);
+    animation: shake 0.6s ease-in-out;
+  }
+
+  .answer-tile.is-wrong .letter {
+    background: rgba(255, 255, 255, 0.25);
+  }
+
+  .answer-tile.is-dim {
+    opacity: 0.45;
+  }
+
+  .answer-tile.is-selected {
+    background: #fbbc04;
+    box-shadow: 0 7px 0 #b98500, 0 14px 22px -14px rgba(0, 0, 0, 0.6);
+  }
+
+  /* ---------- True / False buttons (Levels 2 and 4) ---------- */
+  .tf-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    min-height: 8.5rem;
+    border: 0;
+    border-radius: 2rem;
+    color: #ffffff;
+    font-family: var(--font-display);
+    font-size: 2.2rem;
+    font-weight: 700;
+    transition: transform 0.12s ease, opacity 0.3s ease, outline-color 0.3s ease;
+  }
+
+  .tf-btn:not(:disabled):hover {
+    transform: translateY(-4px);
+  }
+
+  .tf-btn:not(:disabled):active {
+    transform: translateY(6px);
+  }
+
+  .tf-btn:disabled {
+    cursor: default;
+  }
+
+  .tf-btn.is-dim {
+    opacity: 0.35;
+  }
+
+  .tf-btn.is-hit {
+    outline: 6px solid #ffffff;
+    outline-offset: 4px;
+  }
+
+  .tf-true {
+    background: #34a853;
+    box-shadow: 0 10px 0 #1e7d3b;
+  }
+
+  .tf-false {
+    background: #ea4335;
+    box-shadow: 0 10px 0 #a92b20;
+  }
+
+  /* ---------- Mock Google Forms toolbar buttons (Level 4) ---------- */
+  .mock-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 0.85rem;
+    border-radius: 0.9rem;
+    border: 3px solid transparent;
+    background: #f1edfb;
+    color: var(--color-ink);
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1rem;
+    transition: transform 0.12s ease, background 0.2s ease;
+  }
+
+  .mock-btn:not(:disabled):hover {
+    transform: translateY(-2px);
+    background: #e4dcf7;
+  }
+
+  .mock-btn:disabled {
+    cursor: default;
+  }
+
+  .mock-btn.is-right {
+    background: #34a853;
+    color: #ffffff;
+  }
+
+  .mock-btn.is-wrong {
+    background: #ea4335;
+    color: #ffffff;
+    animation: shake 0.6s ease-in-out;
+  }
+
+  /* ---------- Scenes: Level 4 spotlight, City sky, road, clouds, windows ---------- */
+  .spotlight {
+    position: absolute;
+    top: -20%;
+    width: 46vw;
+    max-width: 620px;
+    height: 130%;
+    background: linear-gradient(180deg, rgba(255, 236, 160, 0.45), rgba(255, 236, 160, 0) 75%);
+    clip-path: polygon(44% 0, 56% 0, 100% 100%, 0 100%);
+    transform-origin: 50% 0;
+    animation: sweep 8s ease-in-out infinite;
+  }
+
+  .city-sky {
+    background: linear-gradient(180deg, #5aa9ff 0%, #9fd4ff 55%, #e9f8ff 100%);
+  }
+
+  .road {
+    position: relative;
+    height: 46px;
+    background: #4a4a63;
+    border-top: 8px solid #c7b6ff;
+  }
+
+  .road::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 6px;
+    transform: translateY(-50%);
+    background: repeating-linear-gradient(90deg, #ffffff 0 26px, transparent 26px 52px);
+    opacity: 0.85;
+  }
+
+  .cloud {
+    position: absolute;
+    width: 150px;
+    height: 52px;
+    border-radius: 999px;
+    background: #ffffff;
+    box-shadow: inset 0 -6px 0 rgba(180, 210, 255, 0.5);
+    animation: cloud-drift 60s linear infinite;
+  }
+
+  .cloud::before {
+    content: "";
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: #ffffff;
+    left: 22px;
+    top: -32px;
+  }
+
+  .cloud::after {
+    content: "";
+    position: absolute;
+    width: 92px;
+    height: 92px;
+    border-radius: 50%;
+    background: #ffffff;
+    left: 68px;
+    top: -48px;
+  }
+
+  .sun {
+    width: 92px;
+    height: 92px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #fff9c4, #fbbc04 62%);
+    box-shadow: 0 0 70px 24px rgba(251, 188, 4, 0.4);
+  }
+
+  .bwin {
+    height: 14px;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.35);
+  }
+
+  .bwin.lit {
+    background: #fff6b0;
+    box-shadow: 0 0 10px rgba(255, 246, 176, 0.9);
+  }
+
+  /* ---------- Certificate + print helpers ---------- */
+  .cert {
+    background: linear-gradient(135deg, #fffdf2 0%, #ffffff 60%, #f3edff 100%);
+    border: 10px double #673ab7;
+  }
+
+  .print-only {
+    display: none;
+  }
+}
+
+/* ============================================================
+   Printing (certificate) and accessibility
+   ============================================================ */
+@media print {
+  body * {
+    visibility: hidden !important;
+  }
+
+  .print-area,
+  .print-area * {
+    visibility: visible !important;
+  }
+
+  .print-area {
+    position: absolute !important;
+    left: 0;
+    top: 0;
+    width: 100% !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    background: #ffffff !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block !important;
+  }
+
+  body {
+    background: #ffffff !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
