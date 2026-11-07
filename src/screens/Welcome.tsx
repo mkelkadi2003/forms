@@ -4,6 +4,7 @@ import { Btn, Bubble, Robot, Toggle } from "../components/ui";
 import { sound } from "../lib/audio";
 import { useGame } from "../state/GameContext";
 import { cn } from "../utils/cn";
+import BassamLogo from "../assets/bassam-logo.svg";
 
 const TITLE = "Form Adventure City";
 
@@ -44,8 +45,16 @@ export default function Welcome({ onStart, hasProgress }: { onStart: () => void;
       ))}
 
       <div className="relative z-10 mx-auto flex min-h-dvh max-w-5xl flex-col items-center justify-center gap-6 px-5 py-10 text-center">
+        <img
+          src={BassamLogo}
+          alt="Al Bassam Schools"
+          className="mb-6 max-w-md h-auto drop-shadow-2xl"
+          width={220}
+          height={220}
+        />
+
         <p className="pop-in rounded-full bg-gf-yellow px-6 py-2 font-display text-lg font-semibold text-ink shadow-lg sm:text-xl">
-          Welcome, Form Masters! • Grade 4 ICT Lesson
+          Welcome, Form Masters! • Grade 6 ICT Lesson
         </p>
 
         <h1 className="font-display text-5xl font-bold leading-[1.05] sm:text-6xl" aria-label={TITLE}>
@@ -132,7 +141,7 @@ export default function Welcome({ onStart, hasProgress }: { onStart: () => void;
           <Toggle icon="🔊" label="Sound effects" on={settings.sfx} onToggle={() => setSfx(!settings.sfx)} />
         </div>
 
-        <p className="text-sm font-semibold text-white/80">Best in Google Chrome • Grade 4 ICT • Tap or click to play</p>
+        <p className="text-sm font-semibold text-white/80">Best in Google Chrome • Grade 6 ICT • Tap or click to play</p>
       </div>
     </section>
   );

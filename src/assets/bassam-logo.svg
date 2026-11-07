@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none" aria-label="Al Bassam Schools Logo">
+  <defs>
+    <linearGradient id="badgeGradient" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1a1f3a"/>
+      <stop offset="1" stop-color="#0f152e"/>
+    </linearGradient>
+    <linearGradient id="letterGradient" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f0e6d2"/>
+      <stop offset="1" stop-color="#d4c29e"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Outer glow circle -->
+  <circle cx="100" cy="100" r="92" fill="none" stroke="#ffffff" stroke-width="3" opacity="0.15"/>
+
+  <!-- Main badge circle -->
+  <circle cx="100" cy="100" r="70" fill="url(#badgeGradient)" stroke="#4a5568" stroke-width="4"/>
+
+  <!-- Inner accent ring -->
+  <circle cx="100" cy="100" r="62" fill="none" stroke="#6b46c1" stroke-width="2" opacity="0.4"/>
+
+  <!-- Central B letter -->
+  <text x="78" y="110" font-family="serif" font-size="95" font-weight="900" fill="url(#letterGradient)" letter-spacing="-8" filter="url(#glow)">B</text>
+
+  <!-- S letter behind B -->
+  <text x="102" y="115" font-family="serif" font-size="90" font-weight="900" fill="#e2e8f0" letter-spacing="-6" opacity="0.3">S</text>
+
+  <!-- Pencil -->
+  <path d="M120 75 Q135 70 140 85 Q145 100 135 115 Q125 125 110 118" fill="none" stroke="#d97706" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="116" cy="78" r="8" fill="#6b7280" stroke="#2d3748" stroke-width="2"/>
+  <path d="M110 118 L116 132 L122 118" fill="#d97706" stroke="#a05200" stroke-width="1"/>
+
+  <!-- Moon/planet -->
+  <circle cx="116" cy="72" r="9" fill="#4b5563" stroke="#9ca3af" stroke-width="1"/>
+  <circle cx="112" cy="68" r="3" fill="#fbbf24"/>
+
+  <!-- Stars around badge -->
+  <circle cx="50" cy="60" r="2" fill="#ffffff" opacity="0.6"/>
+  <circle cx="150" cy="140" r="2" fill="#ffffff" opacity="0.6"/>
+  <circle cx="145" cy="55" r="1.5" fill="#ffffff" opacity="0.4"/>
+  <circle cx="55" cy="145" r="1.5" fill="#ffffff" opacity="0.4"/>
+
+  <!-- Arabic text arc bottom -->
+  <path id="arabicPath" d="M40 160 Q100 190 160 160" fill="none"/>
+  <text font-family="serif" font-size="18" font-weight="700" fill="#ffffff" letter-spacing="2">
+    <textPath href="#arabicPath" startOffset="15%" text-anchor="middle">مدرسة البسام</textPath>
+  </text>
+</svg>
